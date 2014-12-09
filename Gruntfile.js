@@ -4,10 +4,14 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
 
-    // Task configuration.
+    // Variables - You can call them with the following <%= project.sassDir %>, replacing sassDir with the variable.
+    project: {
+        sassDir: 'scss',
+        cssDir: 'css',
+        jsDir: 'js'
+    },
 
-    // JShint will go through the specified file(s) to ensure there are no errors and best practice is followed.
-    //The options can be set below. Full list of settings found on https://github.com/gruntjs/grunt-contrib-jshint
+    // JShint will go through the specified file(s) to ensure there are no errors and best practice is followed. The options can be set below. Full list of settings found on https://github.com/gruntjs/grunt-contrib-jshint
     jshint: {
       options: {
         curly: true,
@@ -22,8 +26,12 @@ module.exports = function(grunt) {
         boss: true,
         eqnull: true,
         globals: {
-          jQuery: true
+            jQuery: true
         }
+      },
+
+      files: {
+          src: ['<%= project.jsDir %>/*.js', '<%= project.jsDir %>/**/.js']
       },
 
       // Specify the directory/file(s) you want to be checked
@@ -35,12 +43,13 @@ module.exports = function(grunt) {
     // Compass options, this includes 2 different profiles:
     // Dist (distribution) for deployment which compresses files, disables sourcemaps and forces a full compile
     // dev (development) which enables sourcemaps and expands the compiled CSS
+    // For more options/info - https://github.com/gruntjs/grunt-contrib-compass
     compass: {
         dist: {
             options: {
                 sourcemap: false,
-                sassDir: 'scss',
-                cssDir: 'css',
+                sassDir: '<%= project.sassDir %>',
+                cssDir: '<%= project.cssDir %>',
                 environment: 'production',
                 outputStyle: 'compressed',
                 force: true
@@ -49,8 +58,8 @@ module.exports = function(grunt) {
         dev: {
             options: {
                 sourcemap: true,
-                sassDir: 'scss',
-                cssDir: 'css',
+                sassDir: '<%= project.sassDir %>',
+                cssDir: '<%= project.cssDir %>',
                 environment: 'development',
                 outputStyle: 'expanded'
             }
@@ -58,23 +67,25 @@ module.exports = function(grunt) {
     },
 
     // The watch task, this is where you specify what files you want to watch and what task to run when one of those files change.
+    // For more options/info - https://github.com/gruntjs/grunt-contrib-watch
     watch: {
-        // When this gruntfile.js is altered the jshint task will run to check for errors
         gruntfile: {
-            files: '<%= jshint.gruntfile.src %>',
+            files: ['<%= jshint.gruntfile.src %>'],
             tasks: ['jshint:gruntfile']
         },
-        // When any scss files change in the stated directories the compass:dev task will run
+        jshint: {
+            files: ['<%= project.jsDir %>/*.js'],
+            tasks: ['jshint']
+        },
         compass: {
-            files: ['scss/*.scss', 'scss/**/*.scss'],
+            files: ['<%= project.sassDir %>/*.scss', '<%= project.sassDir %>/**/*.scss'],
             tasks: ['compass:dev']
         },
-        // When any css files change the run task will tell the browser to refresh the page if livereload is enabled in the browser
         livereload: {
-            files: ['css/*.css', 'css/**/*.css'],
-                options: {
-                    livereload: true
-                }
+            files: ['<%= project.cssDir %>/*.css', '<%= project.cssDir %>/**/*.css'],
+            options: {
+                livereload: true
+            }
         }
     }
   });
