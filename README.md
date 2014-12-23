@@ -20,7 +20,7 @@ Compass profiles enable you to have compass run with different settings dependin
 
 #### JShint
 
-This will lint gruntfile to ensure there are no errors, it can also be set up to lint other JS files but is commented out at the moment.
+This will lint gruntfile to ensure there are no errors, it can also be set up to lint other JS files.
 
 - This is ran in the default task by running 'grunt' in the terminal/cmd
 
