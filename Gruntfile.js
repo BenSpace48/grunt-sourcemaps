@@ -30,10 +30,6 @@ module.exports = function(grunt) {
         }
       },
 
-      files: {
-          src: ['<%= project.jsDir %>/*.js', '<%= project.jsDir %>/**/.js']
-      },
-
       // Specify the directory/file(s) you want to be checked
       gruntfile: {
         src: ['Gruntfile.js']
