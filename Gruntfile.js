@@ -30,10 +30,6 @@ module.exports = function(grunt) {
         }
       },
 
-      files: {
-          src: ['<%= project.jsDir %>/*.js', '<%= project.jsDir %>/**/.js']
-      },
-
       // Specify the directory/file(s) you want to be checked
       gruntfile: {
         src: ['Gruntfile.js']
@@ -63,19 +59,27 @@ module.exports = function(grunt) {
                 environment: 'development',
                 outputStyle: 'expanded'
             }
+        },
+        force: {
+            options: {
+                sourcemap: true,
+                environment: 'development',
+                outputStyle: 'expanded',
+                force: true
+            }
         }
     },
 
     // The watch task, this is where you specify what files you want to watch and what task to run when one of those files change.
     // For more options/info - https://github.com/gruntjs/grunt-contrib-watch
     watch: {
+        options: {
+            livereload: true,
+            spawn: false // Increases speed but can increase the chance of grunt failing, remove this line if you get errors.
+        },
         gruntfile: {
             files: ['<%= jshint.gruntfile.src %>'],
             tasks: ['jshint:gruntfile']
-        },
-        jshint: {
-            files: ['<%= project.jsDir %>/*.js'],
-            tasks: ['jshint']
         },
         compass: {
             files: ['<%= project.sassDir %>/*.scss', '<%= project.sassDir %>/**/*.scss'],
