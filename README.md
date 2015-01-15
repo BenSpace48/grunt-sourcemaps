@@ -1,6 +1,16 @@
 ## Sourcemaps with grunt
 
-This is the base repo for my sourcemaps grunt project, at the moment is has the following features below. If you'd like anything else adding feel free to create a pull request or let me know and I shall add it.
+This is the base repo for my sourcemaps grunt project, at the moment is has the following features below. If you'd like anything else adding feel free to create a pull request or let me know.
+
+#### To get up and running
+
+1. Download this repo as a zip
+2. Extract gruntfile.js and Gruntfile.js to the themes root folder, e.g ```Betterbathrooms/skin/frontend/enterprise/bb-newtheme```
+3. CD to this directory in terminal/CMD and run ```npm install``` - This will install the required packages to node_modules
+4. Once this has completed run ```grunt``` 
+5. Enjoy
+
+Once you have compiled your scss you should be able to view/edit/save the scss files through your web browser. Details on how to set up your browser to work with sourcemaps - http://thesassway.com/intermediate/using-source-maps-with-sass 
 
 #### Sourcemaps
 
@@ -56,7 +66,7 @@ This creates a task with the name example, which can be excuted by running the c
 
 - Speed improvements and optimisations
 - Branches for each project
-- Possibly more tasks, although this may be a different repo
+- Possibly more tasks, although this may be in a different repo
 - Possibly CSS/HTML lints
 - Check if there's an easier way than having the file in the theme folder, possibly having it in the root folder and specifying the theme directory. It would be good if we could watch several directories with one task (e.g desktop and mobile) but I'm not sure this is possible due to compass' compile limitations.
 
